@@ -14,11 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.bumptech.glide.request.target.BitmapImageViewTarget
-import data.WorkerState
+import domain.model.WorkerState
 
 
 
@@ -37,7 +34,6 @@ fun card(workerState : WorkerState) {
         val lastName = workerState.lastName
         val userTag = workerState.userTag
         val avatarUrl = workerState.avatarUrl
-        val avatarBitMapImage : BitmapImageViewTarget
 
         
 
@@ -50,15 +46,7 @@ fun card(workerState : WorkerState) {
                 modifier = Modifier.fillMaxHeight(),
                 contentAlignment = Alignment.CenterStart
             ) {
-
-                AsyncImage(
-                    model = avatarUrl,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .padding(6.dp)
-                        .size(24.dp)
-                )
+                image(avatarUrl = avatarUrl)
         }
             Box {
                 Column {

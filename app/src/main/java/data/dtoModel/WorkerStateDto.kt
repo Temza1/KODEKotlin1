@@ -1,6 +1,6 @@
-package data
+package data.dtoModel
 
-data class WorkerState(
+data class WorkerStateDto(
     val id : String,
     val avatarUrl : String,
     val firstName : String,
