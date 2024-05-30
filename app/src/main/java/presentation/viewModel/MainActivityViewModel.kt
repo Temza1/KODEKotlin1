@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import data.repositoryImpl.RepositoryImpl
 import domain.model.WorkerListState
 import domain.model.WorkerState
@@ -11,7 +12,13 @@ import domain.model.useCases.GetWorkerListUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivityViewModel(application : Application) : AndroidViewModel(application) {
 
@@ -20,24 +27,30 @@ class MainActivityViewModel(application : Application) : AndroidViewModel(applic
 
 
 
-    private val _workerListState = MutableLiveData<List<WorkerState>>()
-    val workerListState : LiveData<List<WorkerState>>
-        get() = _workerListState
+    private val _workerListState = MutableStateFlow<List<WorkerState>>(emptyList())
+    val workerListState : SharedFlow<List<WorkerState>> = _workerListState.asStateFlow()
+
+    init {
+        _workerListState.value = emptyList()
+    }
 
 
 
-    private val scope = CoroutineScope(Dispatchers.IO)
 
 
     fun getWorkerList() {
-        scope.launch {
-            _workerListState.value = getWorkerListUseCase.invoke()
+        viewModelScope.launch {
+            val workerListFromRep = withContext(Dispatchers.Default) {
+                getWorkerListUseCase.invoke()
+            }
+            _workerListState.value = workerListFromRep
         }
     }
 
+
     override fun onCleared() {
         super.onCleared()
-        scope.cancel()
+        viewModelScope.cancel()
     }
 
 }
