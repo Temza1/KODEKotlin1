@@ -40,7 +40,7 @@ class MainActivityViewModel(application : Application) : AndroidViewModel(applic
 
     fun getWorkerList() {
         viewModelScope.launch {
-            val workerListFromRep = withContext(Dispatchers.Default) {
+            val workerListFromRep = withContext(Dispatchers.IO) {
                 getWorkerListUseCase.invoke()
             }
             _workerListState.value = workerListFromRep
