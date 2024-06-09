@@ -1,4 +1,4 @@
-package domain.model
+package main.domain
 
 interface Repository {
     suspend fun getWorkerList() : List<WorkerState>

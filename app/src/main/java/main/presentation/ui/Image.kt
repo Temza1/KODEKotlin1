@@ -1,4 +1,4 @@
-package presentation.ui
+package main.presentation.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -10,13 +10,18 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 
 @Composable
-fun image(avatarUrl : String) {
+fun Image(
+    avatarUrl : String,
+    modifier: Modifier = Modifier
+) {
     AsyncImage(
         model = avatarUrl,
         contentDescription = null,
-        modifier = Modifier
+        modifier = modifier
             .clip(CircleShape)
             .padding(6.dp)
             .size(24.dp)
     )
 }
+
+

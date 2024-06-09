@@ -1,5 +1,6 @@
-package data.dtoModel
+package main.data.dtoModel
 
+import androidx.annotation.NonNull
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

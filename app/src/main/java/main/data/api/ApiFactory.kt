@@ -1,4 +1,4 @@
-package data.api
+package main.data.api
 
 import com.google.gson.Gson
 import retrofit2.Retrofit

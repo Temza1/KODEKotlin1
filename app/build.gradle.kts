@@ -62,6 +62,9 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.activity:activity-compose:1.9.0")
 
+    implementation ("com.google.dagger:dagger:2.48")
+    annotationProcessor ("com.google.dagger:dagger-compiler:2.5")
+
     val composeBom = platform("androidx.compose:compose-bom:2024.05.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)

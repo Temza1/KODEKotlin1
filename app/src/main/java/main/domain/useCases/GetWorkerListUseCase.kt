@@ -1,8 +1,7 @@
-package domain.model.useCases
+package main.domain.useCases
 
-import domain.model.Repository
-import domain.model.WorkerListState
-import domain.model.WorkerState
+import main.domain.Repository
+import main.domain.WorkerState
 
 class GetWorkerListUseCase(private val repository: Repository) {
 
