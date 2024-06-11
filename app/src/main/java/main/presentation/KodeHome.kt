@@ -1,15 +1,12 @@
 package main.presentation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
+import android.app.Application
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -26,29 +23,51 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
-
-
+import main.presentation.viewModel.ViewModelFactory
 
 
 @Composable
 fun KodeHomeContent(
-    viewModel : MainActivityViewModel = viewModel())
+    viewModel : MainActivityViewModel = viewModel(factory = ViewModelFactory(application = Application()))
+)
 {
-    var showLandingScreen by remember {mutableStateOf(true)}
-    val suggestedWorkers by viewModel.workerListState.collectAsStateWithLifecycle()
+//    viewModel.getWorkerList()
+//    val suggestedWorkers by viewModel.workerListState.collectAsStateWithLifecycle()
+//    var showLandingScreen by remember {mutableStateOf(true)}
 
-    viewModel.getListMoc()
 
+
+    val listWorkers : List<WorkerState> by remember { mutableStateOf(listOf())}
+
+    for(i in 0..20) {
+
+        val workerState = WorkerState(
+            "456$i",
+            "https://cdn.fakercloud.com/avatars/marrimo_128.jpg",
+            "Артём$i",
+            "Затеев$i",
+            "dp$i",
+            "developer$i",
+            "dp$i",
+            "октябрь$i",
+            "$i"
+        )
+
+        listWorkers.plus(workerState)
+    }
 
     LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
-        items(items = suggestedWorkers) { worker ->
+        items(items = listWorkers) { worker ->
             Worker(workerState = worker)
         }
     }
+
 }
+
 
 //@Composable
 //fun WorkerList(
@@ -66,10 +85,12 @@ fun KodeHomeContent(
 //
 //}
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun KodeHome() {
-    KodeHomeContent()
+fun KodeHomePreview() {
+    KODEKotlin1Theme {
+        KodeHomeContent()
+    }
 }
 
 
@@ -84,10 +105,8 @@ fun KodeHome() {
 
 
 
-
-
-
 const val splashWaitTime : Long = 5000
+@SuppressLint("PrivateResource")
 @Composable
 fun LandingScreen(onTimeout: () -> Unit, modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

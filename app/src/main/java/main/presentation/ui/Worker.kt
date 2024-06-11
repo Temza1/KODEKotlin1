@@ -15,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import main.domain.WorkerState
 
 
@@ -42,3 +44,28 @@ fun Worker(
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun WorkerPreview() {
+    KODEKotlin1Theme {
+        Worker(
+            workerState = WorkerState(
+                "456$",
+                "https://cdn.fakercloud.com/avatars/marrimo_128.jpg",
+                "Артём",
+                "Затеев",
+                "dp",
+                "developer",
+                "dp",
+                "октябрь",
+                "74755787"
+            )
+        )
+    }
+}
+
+
+
+
+

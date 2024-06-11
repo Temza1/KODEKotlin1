@@ -1,6 +1,9 @@
 package main.presentation.viewModel
 
 import android.app.Application
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import main.data.repositoryImpl.RepositoryImpl
@@ -31,14 +34,15 @@ class MainActivityViewModel(application : Application) : AndroidViewModel(applic
 
 
 
-//    fun getWorkerList() {
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO) {
+    fun getWorkerList() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
 //                val workerListFromRep = getWorkerListUseCase.invoke()
-//                _workerListState.value = workerListFromRep
-//            }
-//        }
-//    }
+                val workerListMoc = getListMoc()
+                _workerListState.value = workerListMoc
+            }
+        }
+    }
 
     fun getListMoc() : List<WorkerState> {
 
