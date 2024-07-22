@@ -5,25 +5,24 @@ import main.domain.WorkerState
 
 class WorkerMapper {
 
-    fun mapDtoToDomain(listDto : List<WorkerStateDto>?) : List<WorkerState> {
+    fun mapDtoToDomain(listDto: List<WorkerStateDto>?): List<WorkerState> {
 
-        val listDomain : List<WorkerState> = emptyList()
+        val listDomain = ArrayList<WorkerState>()
 
         listDto?.forEach {
-
-            val workerState = WorkerState(
-                it.id,
-                it.avatarUrl,
-                it.firstName,
-                it.lastName,
-                it.department,
-                it.phone,
-                it.position,
-                it.userTag,
-                it.birthday
+            val workerState1 = WorkerState(
+                id = it.id,
+                avatarUrl = "https://pic.rutubelist.ru/user/fd/76/fd766d07ff98aae9c6ef20cf3c5312d2.jpg",
+                firstName = it.firstName,
+                lastName = it.lastName,
+                userTag = it.userTag,
+                department = it.department,
+                position = it.position,
+                birthday = it.birthday,
+                phone = it.phone
             )
 
-            listDomain.plus(workerState)
+            listDomain.add(workerState1)
         }
 
         return listDomain

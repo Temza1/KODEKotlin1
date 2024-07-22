@@ -3,51 +3,75 @@ package main.presentation
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import main.domain.WorkerState
-import main.presentation.viewModel.MainActivityViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import main.presentation.ui.Worker
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import main.domain.WorkerState
+import main.presentation.viewModel.MainActivityViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
+import main.presentation.ui.ProfileScreen
+import main.presentation.ui.WorkerListScreen
 import main.presentation.viewModel.ViewModelFactory
 
 
 @Composable
 fun KodeHomeContent(
-    viewModel : MainActivityViewModel = viewModel(factory = ViewModelFactory(application = Application()))
+    modifier : Modifier = Modifier
 )
 {
-//    viewModel.getWorkerList()
-//    val suggestedWorkers by viewModel.workerListState.collectAsStateWithLifecycle()
-//    var showLandingScreen by remember {mutableStateOf(true)}
+
+    Scaffold(
+        content = {
+            padding ->
+            Column(
+                modifier= modifier.padding(padding)
+            ) {
+                ScreenContent()
+            }
+        }
+    )
+
+    var IsShowProfileScreen by remember {mutableStateOf(true)}
+
+}
 
 
+@Composable
+fun ScreenContent(
+    viewModel : MainActivityViewModel = viewModel(factory = ViewModelFactory(application = Application()))
+) {
 
-    val listWorkers : List<WorkerState> by remember { mutableStateOf(listOf())}
+    val suggestedWorkers by viewModel.workerListState.collectAsState()
+    val mockListWorkers : ArrayList<WorkerState> by remember { mutableStateOf(getMockWorkers()) }
 
+    var profileScreenIsShow by remember {mutableStateOf(true)}
+
+    WorkerListScreen(suggestedWorkers)
+
+}
+
+private fun getMockWorkers(): ArrayList<WorkerState> {
+
+    val listWorkers = ArrayList<WorkerState>()
     for(i in 0..20) {
-
         val workerState = WorkerState(
             "456$i",
-            "https://cdn.fakercloud.com/avatars/marrimo_128.jpg",
+            "https://cerenas.club/uploads/posts/2022-12/1671182249_cerenas-club-p-kot-v-chernikh-ochkakh-instagram-48.jpg",
             "Артём$i",
             "Затеев$i",
             "dp$i",
@@ -57,33 +81,11 @@ fun KodeHomeContent(
             "$i"
         )
 
-        listWorkers.plus(workerState)
+        listWorkers.add(workerState)
     }
-
-    LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
-        items(items = listWorkers) { worker ->
-            Worker(workerState = worker)
-        }
-    }
-
+    return listWorkers
 }
 
-
-//@Composable
-//fun WorkerList(
-//    listWorkerState: List<WorkerState>,
-//    modifier: Modifier = Modifier) {
-//
-//    LazyColumn(
-//        modifier = modifier
-//            .fillMaxSize()
-//    ) {
-//        items(listWorkerState) { listWorkerState.forEach {
-//            Worker(it)
-//        }}
-//    }
-//
-//}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

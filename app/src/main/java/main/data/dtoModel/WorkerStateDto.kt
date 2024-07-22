@@ -6,31 +6,31 @@ import com.google.gson.annotations.SerializedName
 
 data class WorkerStateDto(
 
-    @SerializedName("ID")
+    @SerializedName("id")
     @Expose
     val id : String,
-    @SerializedName("AVATAR")
+    @SerializedName("avatarUrl")
     @Expose
     val avatarUrl : String,
-    @SerializedName("FIRSTNAME")
+    @SerializedName("firstName")
     @Expose
     val firstName : String,
-    @SerializedName("LASTNAME")
+    @SerializedName("lastName")
     @Expose
     val lastName : String,
-    @SerializedName("USERTAG")
+    @SerializedName("userTag")
     @Expose
     val userTag : String,
-    @SerializedName("DEPARTAMENT")
+    @SerializedName("department")
     @Expose
     val department : String,
-    @SerializedName("POSITION")
+    @SerializedName("position")
     @Expose
     val position : String,
-    @SerializedName("BIRTHDAY")
+    @SerializedName("birthday")
     @Expose
     val birthday : String,
-    @SerializedName("PHONE")
+    @SerializedName("phone")
     @Expose
     val phone : String
 )
