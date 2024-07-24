@@ -1,4 +1,4 @@
-package main.presentation.ui
+package main.presentation.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -6,14 +6,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.R
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
-import main.presentation.KodeHomeContent
 
 @Composable
 fun Image(

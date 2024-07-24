@@ -1,7 +1,7 @@
 package main.presentation
 
 import android.annotation.SuppressLint
-import android.app.Application
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,24 +9,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import main.domain.WorkerState
-import main.presentation.viewModel.MainActivityViewModel
+import main.presentation.mainScreen.MainScreenViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
-import main.presentation.ui.ProfileScreen
-import main.presentation.ui.WorkerListScreen
-import main.presentation.viewModel.ViewModelFactory
+import main.presentation.components.ProfileScreen
+import main.presentation.components.WorkerListScreen
+import main.presentation.mainScreen.MainScreen
 
 
 @Composable
@@ -35,35 +35,31 @@ fun KodeHomeContent(
 )
 {
 
+    var showToast by remember {mutableStateOf(false)}
+    val context = LocalContext.current
+
     Scaffold(
         content = {
             padding ->
             Column(
                 modifier= modifier.padding(padding)
             ) {
-                ScreenContent()
+                MainScreen(
+                    onItemClick = { showToast = true }
+                )
+                if(showToast) {
+                    Toast(context,"произошёл нажатие")
+                }
             }
         }
     )
-
-    var IsShowProfileScreen by remember {mutableStateOf(true)}
-
 }
-
 
 @Composable
-fun ScreenContent(
-    viewModel : MainActivityViewModel = viewModel(factory = ViewModelFactory(application = Application()))
-) {
-
-    val suggestedWorkers by viewModel.workerListState.collectAsState()
-    val mockListWorkers : ArrayList<WorkerState> by remember { mutableStateOf(getMockWorkers()) }
-
-    var profileScreenIsShow by remember {mutableStateOf(true)}
-
-    WorkerListScreen(suggestedWorkers)
-
+private fun Toast(context: Context, text : String){
+    android.widget.Toast.makeText(context, text, android.widget.Toast.LENGTH_LONG).show()
 }
+
 
 private fun getMockWorkers(): ArrayList<WorkerState> {
 
@@ -85,7 +81,6 @@ private fun getMockWorkers(): ArrayList<WorkerState> {
     }
     return listWorkers
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

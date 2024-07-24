@@ -1,16 +1,18 @@
-package main.presentation.ui
+package main.presentation.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import main.domain.WorkerState
 import main.presentation.KodeHomeContent
+import main.presentation.mainScreen.MainScreenContract
 
 @Composable
 fun WorkerListScreen(
-    suggestedWorkers: List<WorkerState>
+    state : MainScreenContract.State,
+    onItemClick: () -> Unit
 ) {
-    LazyColumn(suggestedWorkers)
+    LazyColumn(state.workers,onItemClick)
 }
 
 private fun getMockWorkers(): ArrayList<WorkerState> {
@@ -33,7 +35,6 @@ private fun getMockWorkers(): ArrayList<WorkerState> {
     }
     return listWorkers
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
