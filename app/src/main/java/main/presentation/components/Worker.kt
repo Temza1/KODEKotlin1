@@ -24,18 +24,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import main.domain.WorkerState
-
-
-
-
-
 @Composable
 fun Worker(
     onItemClick: () -> Unit,
     modifier: Modifier = Modifier,
     workerState: WorkerState) {
-
-
     Row(
         modifier = modifier.padding(12.dp).clickable(onClick = onItemClick)
     ) {
@@ -55,17 +48,6 @@ fun Worker(
             Text(text = workerState.department.replaceFirstChar { it.uppercase() }, fontSize = 14.sp, color = Color.DarkGray)
         }
     }
-
-//    Box {
-//        Button(
-//            modifier = modifier,
-//            shape = RoundedCornerShape(0.dp),
-//            colors = ButtonDefaults.buttonColors(Color.Transparent),
-//            onClick = { }) {
-//
-//        }
-//    }
-
 }
 
 @Preview(showBackground = true)

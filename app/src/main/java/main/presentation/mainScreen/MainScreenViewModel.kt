@@ -17,20 +17,15 @@ import kotlinx.coroutines.withContext
 import main.domain.Repository
 
 class MainScreenViewModel(application : Application) : AndroidViewModel(application), MainScreenContract.ViewModel {
-
     companion object {
         const val LOG_MA_VIEW_MODEL = "MainActivityViewModel"
     }
-
-
 
     private val _workerListState = MutableStateFlow(MainScreenContract.State())
     override val state: StateFlow<MainScreenContract.State> = _workerListState
 
     override val repositoryImpl: Repository = RepositoryImpl(application)
     override val getWorkerListUseCase = GetWorkerListUseCase(repositoryImpl)
-
-
 
     override fun handleEvent(event: MainScreenContract.Event) {
         when (event) {
@@ -40,12 +35,9 @@ class MainScreenViewModel(application : Application) : AndroidViewModel(applicat
         }
     }
 
-
     init {
     getWorkerList()
     }
-
-
 
     fun getWorkerList() {
         viewModelScope.launch {
@@ -55,11 +47,8 @@ class MainScreenViewModel(application : Application) : AndroidViewModel(applicat
         }
     }
 
-
     override fun onCleared() {
         super.onCleared()
         viewModelScope.cancel()
     }
-
-
 }

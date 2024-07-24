@@ -10,26 +10,20 @@ import main.domain.WorkerState
 
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
-
         setContent {
             KODEKotlin1Theme {
                 KodeHomeContent()
             }
         }
-
     }
 
     @Preview(showBackground = true, showSystemUi = true)
     @Composable
     fun ActivityPreview() {
         KODEKotlin1Theme {
-
+            KodeHomeContent()
         }
     }
 

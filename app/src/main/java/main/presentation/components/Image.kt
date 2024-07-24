@@ -26,7 +26,6 @@ fun Image(
             .size(84.dp)
             .padding(6.dp)
             .clip(CircleShape)
-
     )
 }
 

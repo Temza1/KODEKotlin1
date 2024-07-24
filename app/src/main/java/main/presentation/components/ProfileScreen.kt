@@ -33,9 +33,7 @@ fun ProfileScreen(
     modifier: Modifier = Modifier,
     workerState: WorkerState
                   ) {
-
     Column {
-
         Box(
             modifier = modifier
                 .background(color = Color.LightGray)
@@ -61,7 +59,6 @@ fun ProfileScreen(
 
 
         }
-
         Box(
             modifier = modifier
                 .background(color = Color.White)
@@ -70,15 +67,6 @@ fun ProfileScreen(
             infoAboutWorker(modifier,workerState)
         }
     }
-
-
-//    Scaffold(
-//        modifier = modifier,
-//        topBar = { topBar(modifier) },
-//        content = { paddingValues ->
-//            ProfileScreenContent(modifier = Modifier.padding(paddingValues),workerState) }
-//    )
-
 }
 
 @Composable
@@ -86,7 +74,6 @@ fun infoAboutWorker(
     modifier: Modifier,
     workerState: WorkerState
 ) {
-
     Column {
         Row(
             modifier = modifier.padding(20.dp,20.dp)

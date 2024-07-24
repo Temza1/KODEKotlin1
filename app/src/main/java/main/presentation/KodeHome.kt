@@ -34,7 +34,6 @@ fun KodeHomeContent(
     modifier : Modifier = Modifier
 )
 {
-
     var showToast by remember {mutableStateOf(false)}
     val context = LocalContext.current
 
@@ -59,7 +58,6 @@ fun KodeHomeContent(
 private fun Toast(context: Context, text : String){
     android.widget.Toast.makeText(context, text, android.widget.Toast.LENGTH_LONG).show()
 }
-
 
 private fun getMockWorkers(): ArrayList<WorkerState> {
 
