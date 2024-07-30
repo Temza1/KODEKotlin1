@@ -1,9 +1,9 @@
 package main.domain
 
-import java.io.Serializable
+import androidx.compose.runtime.Immutable
 
 
-data class WorkerState(
+data class Worker(
     val id : String,
     val avatarUrl : String,
     val firstName : String,

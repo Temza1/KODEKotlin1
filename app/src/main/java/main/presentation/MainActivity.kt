@@ -6,10 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
-import main.domain.WorkerState
 
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -18,6 +18,9 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
+
 
     @Preview(showBackground = true, showSystemUi = true)
     @Composable

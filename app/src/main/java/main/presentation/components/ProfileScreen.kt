@@ -26,36 +26,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
-import main.domain.WorkerState
+import main.domain.Worker
 
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
-    workerState: WorkerState
-                  ) {
+    onClickReturnButton: () -> Unit,
+    worker: Worker
+) {
     Column {
         Box(
             modifier = modifier
-                .background(color = Color.LightGray)
                 .fillMaxWidth()
+                .background(color = Color.LightGray)
                 .size(0.dp, 250.dp)
         ) {
 
-            Box(
-                modifier = modifier.padding(10.dp,20.dp),
-                contentAlignment = Alignment.TopStart
-            ) {
-                IconButton(onClick = { /*TODO*/ },modifier) {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowBack ,
-                        contentDescription = "content description"
-                    )
-                }
+            IconButton(onClick = { onClickReturnButton() }, modifier) {
+                Icon(
+                    Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "content description"
+                )
             }
-            
-            Box {
-                ProfileScreenContent(modifier,workerState)
-            }
+
+            ProfileScreenContent(modifier, worker)
 
 
         }
@@ -64,7 +58,7 @@ fun ProfileScreen(
                 .background(color = Color.White)
                 .fillMaxSize()
         ) {
-            infoAboutWorker(modifier,workerState)
+            infoAboutWorker(modifier, worker)
         }
     }
 }
@@ -72,34 +66,31 @@ fun ProfileScreen(
 @Composable
 fun infoAboutWorker(
     modifier: Modifier,
-    workerState: WorkerState
+    worker: Worker
 ) {
     Column {
         Row(
-            modifier = modifier.padding(20.dp,20.dp)
+            modifier = modifier.padding(20.dp, 20.dp)
         ) {
 
-            Box(
-                modifier = modifier.padding(end = 10.dp),
-                contentAlignment = Alignment.TopStart
-            ) {
-                Icon(
-                    Icons.Filled.Star,
-                    contentDescription = "content description"
-                )
-            }
+
+            Icon(
+                Icons.Filled.Star,
+                contentDescription = "content description"
+            )
+
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    workerState.birthday,
+                    worker.birthday,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
                 Text(
-                    workerState.birthday,
+                    worker.birthday,
                     fontSize = 18.sp,
                     color = Color.Gray,
                     fontWeight = FontWeight.Medium
@@ -109,23 +100,19 @@ fun infoAboutWorker(
         }
 
         Row(
-            modifier = modifier.padding(20.dp,0.dp)
+            modifier = modifier.padding(20.dp, 0.dp)
         ) {
-            Box(
-                modifier = modifier.padding(end = 10.dp),
-                contentAlignment = Alignment.TopStart
-            ) {
-                Icon(
-                    Icons.Filled.Call,
-                    contentDescription = "content description"
-                )
-            }
+
+            Icon(
+                Icons.Filled.Call,
+                contentDescription = "content description"
+            )
 
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    workerState.phone,
+                    worker.phone,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -137,7 +124,7 @@ fun infoAboutWorker(
 @Composable
 fun ProfileScreenContent(
     modifier: Modifier,
-    workerState: WorkerState
+    worker: Worker
 ) {
     Box(
         modifier = modifier,
@@ -151,7 +138,7 @@ fun ProfileScreenContent(
         ) {
 
             Image(
-                workerState.avatarUrl,
+                worker.avatarUrl,
                 modifier = modifier
                     .padding(10.dp)
                     .size(120.dp)
@@ -162,17 +149,18 @@ fun ProfileScreenContent(
                 verticalAlignment = Alignment.Bottom
             ) {
                 Text(
-                    text = "${workerState.firstName} ${workerState.lastName}",
+                    text = "${worker.firstName} ${worker.lastName}",
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 24.sp
                 )
                 Text(
-                    text = " ${workerState.userTag.lowercase()}",
+                    text = " ${worker.userTag.lowercase()}",
                     fontSize = 22.sp, color = Color.Gray
                 )
             }
 
-            Text(text = workerState.department.replaceFirstChar { it.uppercase() },
+            Text(
+                text = worker.department.replaceFirstChar { it.uppercase() },
                 fontSize = 18.sp, color = Color.DarkGray, textAlign = TextAlign.Center
             )
 
@@ -188,16 +176,18 @@ fun ProfileScreenContent(
 fun ProfileScreenPreview() {
     KODEKotlin1Theme {
         ProfileScreen(
-            workerState = WorkerState(
-            "456",
-            "https://avatars.mds.yandex.net/get-entity_search/2487574/434829330/S600xU_2x",
-            "Артём",
-            "Затеев",
-            "dp",
-            "developer",
-            "dp",
-            "12 ноября 2000",
-            "74755787"
-        ))
+            onClickReturnButton = {},
+            worker = Worker(
+                "456",
+                "https://avatars.mds.yandex.net/get-entity_search/2487574/434829330/S600xU_2x",
+                "Артём",
+                "Затеев",
+                "dp",
+                "developer",
+                "dp",
+                "12 ноября 2000",
+                "74755787"
+            )
+        )
     }
 }

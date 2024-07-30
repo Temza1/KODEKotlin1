@@ -2,7 +2,7 @@ package main.presentation.mainScreen
 
 import kotlinx.coroutines.flow.StateFlow
 import main.domain.Repository
-import main.domain.WorkerState
+import main.domain.Worker
 import main.domain.useCases.GetWorkerListUseCase
 
 interface MainScreenContract {
@@ -14,7 +14,7 @@ interface MainScreenContract {
     }
 
     data class State(
-        val workers : List<WorkerState> = emptyList(),
+        val workers : List<Worker> = emptyList(),
         val isLoading: Boolean = false,
         val error: String? = null
     )

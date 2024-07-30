@@ -1,16 +1,16 @@
 package main.data.mapper
 
 import main.data.dtoModel.WorkerStateDto
-import main.domain.WorkerState
+import main.domain.Worker
 
 class WorkerMapper {
 
-    fun mapDtoToDomain(listDto: List<WorkerStateDto>?): List<WorkerState> {
+    fun mapDtoToDomain(listDto: List<WorkerStateDto>?): List<Worker> {
 
-        val listDomain = ArrayList<WorkerState>()
+        val listDomain = ArrayList<Worker>()
 
         listDto?.forEach {
-            val workerState1 = WorkerState(
+            val worker1 = Worker(
                 id = it.id,
                 avatarUrl = "https://pic.rutubelist.ru/user/fd/76/fd766d07ff98aae9c6ef20cf3c5312d2.jpg",
                 firstName = it.firstName,
@@ -22,7 +22,7 @@ class WorkerMapper {
                 phone = it.phone
             )
 
-            listDomain.add(workerState1)
+            listDomain.add(worker1)
         }
 
         return listDomain

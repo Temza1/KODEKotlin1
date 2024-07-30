@@ -1,7 +1,6 @@
 package main.di
 
 import dagger.Module
-import main.data.repositoryImpl.RepositoryImpl
 import main.domain.Repository
 import main.domain.useCases.GetWorkerListUseCase
 

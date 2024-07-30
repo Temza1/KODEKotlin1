@@ -60,7 +60,7 @@ dependencies {
 
 
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.activity:activity-compose:1.9.0")
+    implementation("androidx.activity:activity-compose:1.9.1")
 
     implementation ("com.google.dagger:dagger:2.48")
     annotationProcessor ("com.google.dagger:dagger-compiler:2.5")
@@ -73,14 +73,14 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material:1.6.8")
+    implementation("androidx.compose.runtime:runtime")
 
-    implementation("androidx.compose.material:material:1.6.7")
+    val lifecycleVersion = "2.7.0"
 
-    val lifecycle_version = "2.7.0"
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
 
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

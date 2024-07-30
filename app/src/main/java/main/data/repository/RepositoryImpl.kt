@@ -1,11 +1,12 @@
-package main.data.repositoryImpl
+package main.data.repository
 
 import android.app.Application
-import android.util.Log
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import main.data.api.ApiFactory
 import main.data.mapper.WorkerMapper
 import main.domain.Repository
-import main.domain.WorkerState
+import main.domain.Worker
 
 class RepositoryImpl(application: Application) : Repository {
 
@@ -15,9 +16,10 @@ class RepositoryImpl(application: Application) : Repository {
 
     private val apiService = ApiFactory.create()
     private val mapper = WorkerMapper()
-    override suspend fun getWorkerList(): List<WorkerState> {
+    override suspend fun getWorkerList(): List<Worker> {
         val workerResponce = apiService.loadWorkers()
         return mapper.mapDtoToDomain(workerResponce.workers)
     }
+
 
 }
