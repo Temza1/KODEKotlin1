@@ -30,8 +30,8 @@ import main.presentation.KodeHomeContent
 fun WorkerList(
     modifier: Modifier = Modifier,
     getProfileInfo: (Worker) -> Unit,
-    workersItem : List<Worker>,
-    tabTitle : String
+    workersItem: List<Worker>,
+    tabTitle: String
 ) {
 
     androidx.compose.foundation.lazy.LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {

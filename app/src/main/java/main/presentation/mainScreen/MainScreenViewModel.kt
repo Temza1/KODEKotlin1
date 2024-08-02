@@ -45,12 +45,13 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
             withContext(Dispatchers.IO) {
                 _workerListState.value = _workerListState.value.copy(isLoading = true)
                 val workerList = getWorkerListUseCase()
-                _workerListState.value = _workerListState.value.copy(workers = workerList,isLoading = false)
+                _workerListState.value =
+                    _workerListState.value.copy(workers = workerList, isLoading = false)
             }
         }
     }
 
-    fun onSearchTextChange(searchText : String) {
+    fun onSearchTextChange(searchText: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 if (searchText.isBlank()) {
@@ -65,7 +66,11 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
                         it.doesMatchSearchQuery(searchText)
                     }
                     _workerListState.value =
-                        _workerListState.value.copy(workers = sortedList, isLoading = false,searchText = searchText)
+                        _workerListState.value.copy(
+                            workers = sortedList,
+                            isLoading = false,
+                            searchText = searchText
+                        )
                 }
             }
         }

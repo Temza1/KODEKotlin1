@@ -107,7 +107,13 @@ fun MainScreen(
                             modifier = modifier.height(44.dp),
                             selected = index == selectedTabIndex,
                             onClick = { selectedTabIndex = index },
-                            text = { Text(text = item.title, fontSize = 18.sp, color = Color.Gray) },
+                            text = {
+                                Text(
+                                    text = item.title,
+                                    fontSize = 18.sp,
+                                    color = Color.Gray
+                                )
+                            },
                             selectedContentColor = Color.Gray
                         )
                     }
@@ -147,7 +153,7 @@ fun MainScreen(
 private fun getMockWorkers(): ArrayList<Worker> {
 
     val listWorkers = ArrayList<Worker>()
-    for(i in 0..20) {
+    for (i in 0..20) {
         val worker = Worker(
             "456$i",
             "https://cerenas.club/uploads/posts/2022-12/1671182249_cerenas-club-p-kot-v-chernikh-ochkakh-instagram-48.jpg",
