@@ -42,7 +42,7 @@ fun ProfileScreen(
                 .size(0.dp, 250.dp)
         ) {
 
-            IconButton(onClick = { onClickReturnButton() }, modifier) {
+            IconButton(onClick = { onClickReturnButton() }, modifier.padding(10.dp,22.dp)) {
                 Icon(
                     Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "content description"
@@ -76,6 +76,9 @@ fun infoAboutWorker(
 
             Icon(
                 Icons.Filled.Star,
+                modifier = Modifier.padding(
+                    0.dp,0.dp,10.dp,0.dp,
+                ),
                 contentDescription = "content description"
             )
 
@@ -105,6 +108,9 @@ fun infoAboutWorker(
 
             Icon(
                 Icons.Filled.Call,
+                modifier = Modifier.padding(
+                    0.dp,0.dp,10.dp,0.dp,
+                ),
                 contentDescription = "content description"
             )
 

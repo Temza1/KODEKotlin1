@@ -13,4 +13,15 @@ data class Worker(
     val position : String,
     val birthday : String,
     val phone : String
-)
+) {
+    fun doesMatchSearchQuery(query : String) : Boolean {
+        val combinations = listOf(
+            "$firstName +$lastName",
+            "${firstName.first()} ${lastName.first()}}"
+        )
+        return combinations.any {
+            it.contains(query,ignoreCase = true)
+        }
+    }
+
+}

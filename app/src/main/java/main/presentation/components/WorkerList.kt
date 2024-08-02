@@ -30,20 +30,26 @@ import main.presentation.KodeHomeContent
 fun WorkerList(
     modifier: Modifier = Modifier,
     getProfileInfo: (Worker) -> Unit,
-    workersItem : List<Worker>
+    workersItem : List<Worker>,
+    tabTitle : String
 ) {
 
     androidx.compose.foundation.lazy.LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
-        items(items = workersItem) { worker ->
-            Worker(getProfileInfo,worker = worker)
+        if (tabTitle == "Все") {
+            items(items = workersItem) { worker ->
+                Worker(getProfileInfo, worker = worker)
+            }
+        } else {
+            val workers = workersItem.filter {
+                it.department == tabTitle
+            }
+            items(items = workers) { worker ->
+                Worker(getProfileInfo, worker = worker)
+            }
         }
     }
 
 }
-
-
-
-
 
 private fun getMockWorkers(): ArrayList<Worker> {
 
