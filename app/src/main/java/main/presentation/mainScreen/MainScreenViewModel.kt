@@ -32,7 +32,7 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
     override fun sendEvent(event: MainScreenContract.Event) {
         when (event) {
             is MainScreenContract.Event.GetWorkers -> getWorkerList()
-            is MainScreenContract.Event.GetSortWorkers -> TODO()
+            is MainScreenContract.Event.GetSortWorkers -> onSearchTextChange(event.searchText)
         }
     }
 
