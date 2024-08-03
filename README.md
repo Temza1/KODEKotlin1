@@ -17,7 +17,7 @@
 Проект разработан с использованием следующих технологий и инструментов:
 
 - Kotlin
-- MVVM (Model-View-ViewModel) архитектура
+- MVI (Model-View-Intent) архитектура
 - Clean Architecture
 - Jetpack Compose для пользовательского интерфейса
 - Coroutines для асинхронных операций
