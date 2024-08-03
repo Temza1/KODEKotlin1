@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import main.domain.Repository
 
-class MainScreenViewModel(application: Application) : AndroidViewModel(application),
+class MainScreenViewModel (application: Application, val getWorkersUseCase: GetWorkerListUseCase) :
+    AndroidViewModel(application),
     MainScreenContract.ViewModel {
     companion object {
         const val LOG_MA_VIEW_MODEL = "MainActivityViewModel"
@@ -22,7 +23,7 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
     private val _workerListState = MutableStateFlow(MainScreenContract.State())
     override val state: StateFlow<MainScreenContract.State> = _workerListState
 
-    override val repositoryImpl: Repository = RepositoryImpl(application)
+    override val repositoryImpl: Repository = RepositoryImpl()
     override val getWorkerListUseCase = GetWorkerListUseCase(repositoryImpl)
 
     override fun handleEvent(event: MainScreenContract.Event) {

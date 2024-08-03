@@ -8,7 +8,7 @@ import main.data.mapper.WorkerMapper
 import main.domain.Repository
 import main.domain.Worker
 
-class RepositoryImpl(application: Application) : Repository {
+class RepositoryImpl : Repository {
 
     companion object {
         const val LOG_REP_IMPL = "RepositoryImpl"
