@@ -49,8 +49,8 @@ fun MainScreen(
 
     val state by viewModel.state.collectAsState()
 
-//    val sheetState = rememberModalBottomSheetState()
-//    var showBottomSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
+    var showBottomSheet by remember { mutableStateOf(false) }
 
     Scaffold(
         content = { padding ->
