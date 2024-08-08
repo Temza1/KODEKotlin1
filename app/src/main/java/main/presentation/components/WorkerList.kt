@@ -57,7 +57,7 @@ private fun getMockWorkers(): ArrayList<Worker> {
             "dp$i",
             "developer$i",
             "dp$i",
-            "октябрь$i",
+            "ноябрь$i",
             "$i"
         )
 
