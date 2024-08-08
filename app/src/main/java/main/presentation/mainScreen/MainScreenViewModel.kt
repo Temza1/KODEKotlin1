@@ -12,8 +12,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import main.domain.Repository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainScreenViewModel (application: Application, val getWorkersUseCase: GetWorkerListUseCase) :
+@Singleton
+class MainScreenViewModel @Inject constructor(
+    application: Application,
+    private val getWorkersUseCase: GetWorkerListUseCase
+) :
     AndroidViewModel(application),
     MainScreenContract.ViewModel {
     companion object {
@@ -23,8 +29,8 @@ class MainScreenViewModel (application: Application, val getWorkersUseCase: GetW
     private val _workerListState = MutableStateFlow(MainScreenContract.State())
     override val state: StateFlow<MainScreenContract.State> = _workerListState
 
-    override val repositoryImpl: Repository = RepositoryImpl()
-    override val getWorkerListUseCase = GetWorkerListUseCase(repositoryImpl)
+//    override val repositoryImpl: Repository = RepositoryImpl()
+//    override val getWorkerListUseCase = GetWorkerListUseCase(repositoryImpl)
 
     override fun handleEvent(event: MainScreenContract.Event) {
         when (event) {
@@ -42,8 +48,9 @@ class MainScreenViewModel (application: Application, val getWorkersUseCase: GetW
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 _workerListState.value = _workerListState.value.copy(isLoading = true)
-                val workerList = getWorkerListUseCase()
-                _workerListState.value = _workerListState.value.copy(workers = workerList,isLoading = false)
+                val workerList = getWorkersUseCase.invoke()
+                _workerListState.value =
+                    _workerListState.value.copy(workers = workerList, isLoading = false)
             }
         }
     }

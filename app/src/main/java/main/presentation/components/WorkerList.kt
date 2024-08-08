@@ -66,10 +66,10 @@ private fun getMockWorkers(): ArrayList<Worker> {
     return listWorkers
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun WorkerListScreenPreview() {
-    KODEKotlin1Theme {
-        KodeHomeContent()
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun WorkerListScreenPreview() {
+//    KODEKotlin1Theme {
+//        KodeHomeContent()
+//    }
+//}

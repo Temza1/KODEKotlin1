@@ -18,6 +18,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
@@ -27,7 +28,7 @@ import main.presentation.mainScreen.MainScreen
 
 @Composable
 fun KodeHomeContent(
-    modifier: Modifier = Modifier
+    getVmFactory: () -> ViewModelProvider.Factory
 ) {
     var showProfileScreen by remember { mutableStateOf(false) }
     var worker by remember { mutableStateOf(getWorker()) }
@@ -35,21 +36,22 @@ fun KodeHomeContent(
     Scaffold(
         content = { padding ->
             Column(
-                modifier = modifier.padding(padding)
+                modifier = Modifier.padding(padding)
             ) {
                 if (showProfileScreen) {
                     ProfileScreen(
-                        modifier = modifier,
+                        modifier = Modifier,
                         onClickReturnButton = { showProfileScreen = false },
                         worker
                     )
                 } else {
                     MainScreen(
-                        modifier = modifier,
+                        modifier = Modifier,
                         getProfileInfo = {
                             worker = it
                             showProfileScreen = true
-                        }
+                        },
+                        getVmFactory = getVmFactory
                     )
                 }
             }
@@ -97,13 +99,13 @@ private fun getWorker(): Worker {
     )
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun KodeHomePreview() {
-    KODEKotlin1Theme {
-        KodeHomeContent()
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun KodeHomePreview() {
+//    KODEKotlin1Theme {
+//        KodeHomeContent()
+//    }
+//}
 
 
 const val splashWaitTime: Long = 5000

@@ -1,9 +1,11 @@
 package main.data.mapper
 
+import main.data.api.ApiService
 import main.data.dtoModel.WorkerStateDto
 import main.domain.Worker
+import javax.inject.Inject
 
-class WorkerMapper {
+class WorkerMapper @Inject constructor(){
 
     fun mapDtoToDomain(listDto: List<WorkerStateDto>?): List<Worker> {
 
