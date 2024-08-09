@@ -35,46 +35,15 @@ fun MainScreen(
 
     val state by viewModel.state.collectAsState()
 
-    val sheetState = rememberModalBottomSheetState()
-    var showBottomSheet by remember { mutableStateOf(false) }
-
     Scaffold(
         content = { padding ->
             Column(
                 modifier = modifier.padding(padding)
             ) {
                 WorkerList(modifier = modifier, getProfileInfo, state.workers)
-//                if (showBottomSheet) {
-//                    ModalBottomSheet(
-//                        onDismissRequest = {
-//                            showBottomSheet = false
-//                        },
-//                        sheetState = sheetState
-//                    ) {
-//                        // Sheet content
-//                        Button(onClick = {
-//                            if (!sheetState.isVisible) {
-//                                showBottomSheet = false
-//                            }
-//
-//                        }) {
-//                            Text("Hide bottom sheet")
-//                        }
-//                    }
-//                }
             }
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text("Show bottom sheet") },
-                icon = { Icon(Icons.Filled.Add, contentDescription = "") },
-                onClick = {
-//                    showBottomSheet = true
-                }
-            )
         }
     )
-
 
 
 }

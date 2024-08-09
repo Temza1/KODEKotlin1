@@ -9,19 +9,19 @@ interface MainScreenContract {
 
     sealed class Event {
         object GetWorkers : Event()
-        data class GetSearchWorkers(val searchString : String) : Event()
-        data class GetRadioSortWorkers(val isBirthdaySort : Boolean) : Event()
+        data class GetSearchWorkers(val searchString: String) : Event()
+        data class GetRadioSortWorkers(val isBirthdaySort: Boolean) : Event()
     }
 
     data class State(
-        val workers : List<Worker> = emptyList(),
+        val workers: List<Worker> = emptyList(),
         val isLoading: Boolean = false,
         val error: String? = null
     )
 
     interface ViewModel {
-        val state : StateFlow<State>
-        fun handleEvent(event : Event)
+        val state: StateFlow<State>
+        fun handleEvent(event: Event)
     }
 
 

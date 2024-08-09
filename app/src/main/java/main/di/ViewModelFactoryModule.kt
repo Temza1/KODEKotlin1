@@ -9,5 +9,5 @@ import main.presentation.ViewModelFactory
 interface ViewModelFactoryModule {
 
     @Binds
-    fun bindsVModelFactory(impl : ViewModelFactory) : ViewModelProvider.Factory
+    fun bindsVModelFactory(impl: ViewModelFactory): ViewModelProvider.Factory
 }

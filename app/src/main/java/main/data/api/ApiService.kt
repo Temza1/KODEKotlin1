@@ -10,6 +10,6 @@ import javax.inject.Singleton
 @Singleton
 interface ApiService {
     @GET("users")
-    suspend fun loadWorkers() : WorkerResponce
+    suspend fun loadWorkers(): WorkerResponce
 
 }

@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    @Inject lateinit var factory: ViewModelProvider.Factory
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
 
     private val component by lazy {
         (application as App).component
@@ -27,12 +28,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             KODEKotlin1Theme {
-                Navigation(getVmFactory = {factory})
+                Navigation(getVmFactory = { factory })
             }
         }
     }
-
-
 
 
 //    @Preview(showBackground = true, showSystemUi = true)
@@ -44,15 +43,9 @@ class MainActivity : ComponentActivity() {
 //    }
 
 
-
-
-
-
-
     companion object {
         const val LOG_MAIN_ACTIVITY = "MainActivity"
     }
-
 
 
 }

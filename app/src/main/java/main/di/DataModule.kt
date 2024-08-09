@@ -16,6 +16,6 @@ interface DataModule {
     fun bindsRepositoryImpl(impl: RepositoryImpl): Repository
 
     @Binds
-    fun bindsApiServiceImpl(impl : ApiService) : ApiService
+    fun bindsApiServiceImpl(impl: ApiService): ApiService
 
 }
