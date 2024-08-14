@@ -8,11 +8,10 @@ import androidx.navigation.compose.rememberNavController
 import main.domain.Worker
 import main.presentation.KodeHomeContent
 import main.presentation.mainScreen.MainScreen
+import main.presentation.mainScreen.MainScreenViewModel
 
 @Composable
-fun Navigation(
-    getVmFactory: () -> ViewModelProvider.Factory
-) {
+fun Navigation() {
 
 
     val navController = rememberNavController()
@@ -20,7 +19,7 @@ fun Navigation(
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable("Home") {
-            KodeHomeContent(getVmFactory)
+            KodeHomeContent()
         }
 
     }

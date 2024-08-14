@@ -3,6 +3,7 @@ package main.presentation.mainScreen
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import main.data.repository.RepositoryImpl
 import main.domain.useCases.GetWorkerListUseCase
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,7 @@ import main.domain.Repository
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+@HiltViewModel
 class MainScreenViewModel @Inject constructor(
     application: Application,
     private val getWorkersUseCase: GetWorkerListUseCase

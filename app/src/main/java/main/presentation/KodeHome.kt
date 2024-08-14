@@ -24,12 +24,11 @@ import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
 import main.presentation.components.ProfileScreen
 import main.presentation.mainScreen.MainScreen
+import main.presentation.mainScreen.MainScreenViewModel
 
 
 @Composable
-fun KodeHomeContent(
-    getVmFactory: () -> ViewModelProvider.Factory
-) {
+fun KodeHomeContent() {
     var showProfileScreen by remember { mutableStateOf(false) }
     var worker by remember { mutableStateOf(getWorker()) }
 
@@ -50,8 +49,7 @@ fun KodeHomeContent(
                         getProfileInfo = {
                             worker = it
                             showProfileScreen = true
-                        },
-                        getVmFactory = getVmFactory
+                        }
                     )
                 }
             }

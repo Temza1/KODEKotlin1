@@ -21,15 +21,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
+import dagger.hilt.android.AndroidEntryPoint
 import main.domain.Worker
 import main.presentation.components.WorkerList
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    getVmFactory: () -> ViewModelProvider.Factory,
-    viewModel: MainScreenViewModel = viewModel(factory = getVmFactory()),
+    viewModel: MainScreenViewModel = viewModel(),
     getProfileInfo: (Worker) -> Unit
 ) {
 

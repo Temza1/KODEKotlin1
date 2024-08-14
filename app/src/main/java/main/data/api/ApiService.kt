@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 interface ApiService {
     @GET("users")
     suspend fun loadWorkers(): WorkerResponce

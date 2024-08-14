@@ -1,11 +1,7 @@
 package main.app
 
 import android.app.Application
-import main.di.AppComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class App : Application() {
-
-    val component by lazy {
-
-    }
-}
+@HiltAndroidApp
+class App : Application()
