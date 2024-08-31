@@ -7,6 +7,9 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import dagger.hilt.android.AndroidEntryPoint
 import main.app.App
@@ -26,7 +29,14 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             KODEKotlin1Theme {
-                Navigation()
+                val navController = rememberNavController()
+
+                NavHost(navController = navController, startDestination = "Home") {
+                    composable("Home") {
+                        KodeHomeContent(vm)
+                    }
+
+                }
             }
         }
     }

@@ -30,7 +30,7 @@ import main.presentation.components.WorkerList
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel = viewModel(),
+    viewModel: MainScreenViewModel,
     getProfileInfo: (Worker) -> Unit
 ) {
 

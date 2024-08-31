@@ -13,15 +13,5 @@ import main.presentation.mainScreen.MainScreenViewModel
 @Composable
 fun Navigation() {
 
-
-    val navController = rememberNavController()
-    val startDestination = "Home"
-
-    NavHost(navController = navController, startDestination = startDestination) {
-        composable("Home") {
-            KodeHomeContent()
-        }
-
-    }
 }
 

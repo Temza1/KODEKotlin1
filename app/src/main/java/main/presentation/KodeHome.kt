@@ -28,7 +28,7 @@ import main.presentation.mainScreen.MainScreenViewModel
 
 
 @Composable
-fun KodeHomeContent() {
+fun KodeHomeContent(viewModel: MainScreenViewModel) {
     var showProfileScreen by remember { mutableStateOf(false) }
     var worker by remember { mutableStateOf(getWorker()) }
 
@@ -46,6 +46,7 @@ fun KodeHomeContent() {
                 } else {
                     MainScreen(
                         modifier = Modifier,
+                        viewModel,
                         getProfileInfo = {
                             worker = it
                             showProfileScreen = true
