@@ -9,11 +9,13 @@ interface MainScreenContract {
 
     sealed class Event {
         data object GetWorkers : Event()
-        data class GetSortWorkers(val searchText : String) : Event()
+        data class GetSortWorkers(val searchText : String): Event()
+        data class RadioSort(val isBirthSort : Boolean): Event()
     }
 
     data class State(
         val workers : List<Worker> = emptyList(),
+        val sortedWorkers : List<Worker> = emptyList(),
         val isLoading: Boolean = false,
         val error: String? = null,
         val searchText : String = "",

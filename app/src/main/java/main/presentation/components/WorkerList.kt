@@ -4,6 +4,7 @@ package main.presentation.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.items
@@ -34,7 +35,11 @@ fun WorkerList(
     tabTitle: String
 ) {
 
-    androidx.compose.foundation.lazy.LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+
+    androidx.compose.foundation.lazy.LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(vertical = 4.dp)) {
         if (tabTitle == "Все") {
             items(items = workersItem) { worker ->
                 Worker(getProfileInfo, worker = worker)

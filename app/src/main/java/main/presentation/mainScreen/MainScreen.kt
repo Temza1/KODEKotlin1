@@ -34,7 +34,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,6 +63,7 @@ fun MainScreen(
     val tabItems = getTabItems()
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val pagerState = rememberPagerState { tabItems.size }
+    val focusRequester = remember { FocusRequester() }
 
 
     Scaffold(
@@ -68,9 +73,16 @@ fun MainScreen(
                 SearchBar(
                     modifier = modifier
                         .padding(16.dp, 12.dp, 0.dp, 24.dp)
-                        .height(52.dp),
-                    query = state.searchText,
-                    onQueryChange = { MainScreenContract.Event.GetSortWorkers(it) },
+                        .height(52.dp)
+                        .focusRequester(focusRequester),
+                    query = TextFieldValue(
+                        text = state.searchText,
+                        selection = TextRange(state.searchText.length)
+                    ).text,
+                    onQueryChange = {
+                        (viewModel::sendEvent)(MainScreenContract.Event.GetSortWorkers(it))
+                        focusRequester.requestFocus()
+                    },
                     leadingIcon = {
                         Icon(
                             Icons.Filled.Search,
@@ -80,7 +92,7 @@ fun MainScreen(
                         )
                     },
                     trailingIcon = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { (viewModel::sendEvent)(MainScreenContract.Event.RadioSort(true))}) {
                             Icon(
                                 Icons.Filled.Menu,
                                 contentDescription = "content description",
@@ -139,7 +151,7 @@ fun MainScreen(
                         WorkerList(
                             modifier = modifier,
                             getProfileInfo,
-                            state.workers,
+                            state.sortedWorkers,
                             tabItems[index].titleForSort
                         )
                     }
