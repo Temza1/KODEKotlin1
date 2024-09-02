@@ -34,7 +34,6 @@ fun KodeHomeContent(
 ) {
     var showProfileScreen by remember { mutableStateOf(false) }
     var worker by remember { mutableStateOf(getWorker()) }
-    val state by vm.state.collectAsState()
 
     Scaffold(
         content = { padding ->
@@ -50,7 +49,7 @@ fun KodeHomeContent(
                 } else {
                     MainScreen(
                         modifier = Modifier,
-                        state,
+                        vm,
                         getProfileInfo = {
                             worker = it
                             showProfileScreen = true

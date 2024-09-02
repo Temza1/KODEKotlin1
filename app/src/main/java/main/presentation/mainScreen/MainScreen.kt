@@ -61,9 +61,10 @@ import main.presentation.components.WorkerList
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    state : MainScreenContract.State,
+    vm : MainScreenViewModel,
     getProfileInfo: (Worker) -> Unit
 ) {
+    val state by vm.state.collectAsState()
 
     val tabItems = getTabItems()
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -89,7 +90,7 @@ fun MainScreen(
                         selection = TextRange(state.searchText.length)
                     ).text,
                     onQueryChange = {
-//                        (viewModel::sendEvent)(MainScreenContract.Event.GetSortWorkers(it))
+                        (vm::sendEvent)(MainScreenContract.Event.GetSortWorkers(it))
                         focusRequester.requestFocus()
                     },
                     leadingIcon = {
@@ -237,9 +238,6 @@ private fun getMockWorkers(): ArrayList<Worker> {
 @Composable
 fun KodeHomePreview() {
     KODEKotlin1Theme {
-        MainScreen(
-            getProfileInfo = {},
-            state = MainScreenContract.State()
-        )
+
     }
 }
