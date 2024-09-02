@@ -81,6 +81,6 @@ private fun getMockWorkers(): ArrayList<Worker> {
 @Composable
 fun WorkerListScreenPreview() {
     KODEKotlin1Theme {
-        KodeHomeContent()
+
     }
 }

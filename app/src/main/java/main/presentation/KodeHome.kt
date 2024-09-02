@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,34 +19,38 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.kodekotlin1.ui.theme.KODEKotlin1Theme
 import kotlinx.coroutines.delay
 import main.presentation.components.ProfileScreen
 import main.presentation.mainScreen.MainScreen
+import main.presentation.mainScreen.MainScreenViewModel
 
 
 @Composable
 fun KodeHomeContent(
-    modifier: Modifier = Modifier
+    vm : MainScreenViewModel
 ) {
     var showProfileScreen by remember { mutableStateOf(false) }
     var worker by remember { mutableStateOf(getWorker()) }
+    val state by vm.state.collectAsState()
 
     Scaffold(
         content = { padding ->
             Column(
-                modifier = modifier.padding(padding)
+                modifier = Modifier.padding(padding)
             ) {
                 if (showProfileScreen) {
                     ProfileScreen(
-                        modifier = modifier,
+                        modifier = Modifier,
                         onClickReturnButton = { showProfileScreen = false },
                         worker
                     )
                 } else {
                     MainScreen(
-                        modifier = modifier,
+                        modifier = Modifier,
+                        state,
                         getProfileInfo = {
                             worker = it
                             showProfileScreen = true
@@ -101,7 +106,7 @@ private fun getWorker(): Worker {
 @Composable
 fun KodeHomePreview() {
     KODEKotlin1Theme {
-        KodeHomeContent()
+
     }
 }
 

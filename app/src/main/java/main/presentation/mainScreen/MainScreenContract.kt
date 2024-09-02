@@ -24,8 +24,6 @@ interface MainScreenContract {
 
     interface ViewModel {
         val state : StateFlow<State>
-        val repositoryImpl : Repository
-        val getWorkerListUseCase : GetWorkerListUseCase
         fun sendEvent(event : Event)
     }
 

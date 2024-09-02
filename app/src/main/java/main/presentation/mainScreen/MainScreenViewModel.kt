@@ -3,6 +3,7 @@ package main.presentation.mainScreen
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import main.data.repository.RepositoryImpl
 import main.domain.useCases.GetWorkerListUseCase
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +18,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import main.domain.Repository
 import main.domain.Worker
+import javax.inject.Inject
 
-class MainScreenViewModel(application: Application) : AndroidViewModel(application),
+@HiltViewModel
+class MainScreenViewModel @Inject constructor(
+    application: Application,
+    private val getWorkerListUseCase: GetWorkerListUseCase
+) : AndroidViewModel(application),
     MainScreenContract.ViewModel {
     companion object {
         const val LOG_MA_VIEW_MODEL = "MainActivityViewModel"
@@ -26,9 +32,6 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
 
     private val _workerListState = MutableStateFlow(MainScreenContract.State())
     override val state: StateFlow<MainScreenContract.State> = _workerListState
-
-    override val repositoryImpl: Repository = RepositoryImpl(application)
-    override val getWorkerListUseCase = GetWorkerListUseCase(repositoryImpl)
 
     override fun sendEvent(event: MainScreenContract.Event) {
         when (event) {
